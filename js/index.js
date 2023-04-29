@@ -50,25 +50,52 @@ function minuHoras(minutos) {
   }
 
 function calculaHorasTotal(){
-    let tempoArray = relatorio.mes[mesAtualString.toLowerCase()].map(item => item.tempo)
-    const somaTempo = tempoArray.reduce(function(acumulador,atual){
-        return acumulador+atual
-    })
-    return minutosParaHoras(somaTempo)
+    if(relatorio.mes[mesAtualString.toLowerCase()].length>0){
+        let tempoArray = relatorio.mes[mesAtualString.toLowerCase()].map(item => item.tempo)
+        const somaTempo = tempoArray.reduce(function(acumulador,atual){
+            return acumulador+atual
+        })
+        return minutosParaHoras(somaTempo)
+    }else{
+        return '00'
+    }
 }
 function calculaRevisitasTotal(){
-    let somaArrya = relatorio.mes[mesAtualString.toLowerCase()].map(item => parseInt(item.revisitas))
-    console.log(somaArrya);
-    const soma = somaArrya.reduce(function(acumulador,atual){
-        return acumulador+atual
-    })
-    return soma
+    if(relatorio.mes[mesAtualString.toLowerCase()].length>0){
+        let somaArrya = relatorio.mes[mesAtualString.toLowerCase()].map(item => parseInt(item.revisitas))
+        console.log(somaArrya);
+        const soma = somaArrya.reduce(function(acumulador,atual){
+            return acumulador+atual
+        })
+        return soma
+    }else{
+        return '00'
+    }
 }
 function calculaVideosTotal(){
-    let somaArrya = relatorio.mes[mesAtualString.toLowerCase()].map(item => parseInt(item.videos))
-    console.log(somaArrya);
-    const soma = somaArrya.reduce(function(acumulador,atual){
-        return acumulador+atual
-    })
-    return soma
+    if(relatorio.mes[mesAtualString.toLowerCase()].length>0){
+        let somaArrya = relatorio.mes[mesAtualString.toLowerCase()].map(item => parseInt(item.videos))
+        console.log(somaArrya);
+        const soma = somaArrya.reduce(function(acumulador,atual){
+            return acumulador+atual
+        },0)
+        return soma
+    }else{
+        return '00'
+    }
+}
+function calculaPublicacoesTotal(){
+    if(relatorio.mes[mesAtualString.toLowerCase()].length>0){
+        let somaArrya = relatorio.mes[mesAtualString.toLowerCase()].map(item => parseInt(item.publicacoes))
+        console.log(somaArrya);
+        const soma = somaArrya.reduce(function(acumulador,atual){
+            return acumulador+atual
+        })
+        return soma
+    }else{
+        return '00'
+    }
+}
+function editaEstudos(){
+    return 
 }

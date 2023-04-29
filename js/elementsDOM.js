@@ -7,10 +7,12 @@ spHorasTotal.innerText = calculaHorasTotal()
 const spRevTotal = $id('revisitasTotal')
 spRevTotal.innerText = calculaRevisitasTotal()
 const spVideosTotal = $id('videosTotal')
-spVideosTotal.innerText = calculaRevisitasTotal()
+spVideosTotal.innerText = calculaVideosTotal()
 const spPubTotal = $id('pubTotal')
+spPubTotal.innerText = calculaPublicacoesTotal()
 const spEstudosTotal = $id('estudosTotal')
 const btnQtdEstudos = $id('qtdEstudos')
+
 //tabela relatorio
 const tBody = $id('tbody')
 relatorio.mes[mesAtualString.toLowerCase()].forEach(item => tBody.appendChild(tBodyCreate(item)))
@@ -38,7 +40,7 @@ btnFecharDialogo.addEventListener('click', function() {
 });
   
 btnIncluirAtividade.addEventListener('click', function(){
-    if(ipDia.value && ipHoras.value ){
+    if(ipDia.value && ipHoras.value || ipMin.value ){
         const atividade = {
             dia : ipDia.value,
             tempo : (parseInt(ipHoras.value)*60)+(parseInt(ipMin.value)),
@@ -67,7 +69,8 @@ btnIncluirAtividade.addEventListener('click', function(){
         localStorage.setItem('relatorio', JSON.stringify(relatorio))
         spHorasTotal.innerText = calculaHorasTotal()
         spRevTotal.innerText = calculaRevisitasTotal()
-
+        spPubTotal.innerText = calculaPublicacoesTotal()
+        spVideosTotal.innerText = calculaRevisitasTotal()
     }else{
         console.log('falta horas');
     }
