@@ -1,13 +1,5 @@
-{/* <tr>
-    <td>1</td>//inclusao.dia
-    <td>2:00</td>//inclusao.hora
-    <td>1</td>//inclusao.video
-    <td>2</td>//inclusao.publicacao
-    <td>1</td>//inclusao.revisita
-</tr> */}
 function tBodyCreate(inclusao){
     const tempo = minuHoras(inclusao.tempo)
-    console.log(inclusao);
     const tr = $cria('tr')
     const tdDia = $cria('td')
     const tdHoras = $cria('td')

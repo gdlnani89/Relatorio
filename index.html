@@ -11,9 +11,13 @@
 </head>
 <body>
     <header>
-        <button class="previous"></button>
+        <button class="previous">
+            <ion-icon name="caret-back-circle"></ion-icon>
+        </button>
         <span id="mesRelatorio" class="mes">Abril</span>
-        <button class="next"></button>
+        <button class="next">
+            <ion-icon name="caret-forward-circle"></ion-icon>
+        </button>
     </header>
     <main>
         <div class="relatorio">
@@ -38,7 +42,9 @@
                     <span class="dado">Estudos</span>
                     <div class="editaEstudo">
                         <span id="estudosTotal">00</span>
-                        <button id="qtdEstudos" class="editar"></button>
+                        <button id="qtdEstudos" title="Alterar">
+                            <ion-icon name="create"></ion-icon>
+                        </button>
                     </div>
                     
                 </li>
@@ -57,46 +63,30 @@
                 </thead>
                 <tbody id="tbody"></tbody>
               </table>
-              
         </div>
     </main>
     <footer>
-        <button id="alvo" class="alvo"></button>
-        <button id="add" class="add"></button>
-        <!-- <button id="send" class="send" onclick="window.location.href='whatsapp://send?text=Texto%20que%20será%20compartilhado.%0Ahttps%3A%2F%2Fseusite.com'"></button> -->
-        <!-- <button id="send" class="send" onclick="window.location.href='whatsapp://send?text=Texto%20que%20será%20compartilhado.%0Ahttps%3A%2F%2Fseusite.com'"></button> -->
-        <!-- <a id="send" class="send" href="https://wa.me/5511999999999?text=Olá%2C%20tudo%20bem%3F%20Estou%20interessado%20em%20seus%20produtos." target="_blank"></a> -->
-        <a id="send" class="send" href="whatsapp://send?text=Texto%20que%20será%20compartilhado.%0Ahttps%3A%2F%2Fseusite.com" target="_blank"></a>
+        <button id="alvo" title="Alvos">
+            <ion-icon name="rocket"></ion-icon>
+        </button>
+        <button id="add">
+            <ion-icon name="add-circle"></ion-icon>
+        </button>
+        <a id="send">
+            <ion-icon name="navigate"></ion-icon>
+        </a>
     </footer>
+    <!-- modal -->
     <div class="caixa-dialogo" id="minha-caixa-dialogo">
         <div class="caixa-dialogo-conteudo">
-            <!-- Conteúdo da caixa de diálogo aqui -->
-            <h2>Adicionar</h2>
-            <div class="form-adiciona">
-                <label for="dia">Dia
-                    <input type="number" id="dia" style="width: 25px;" name="dias" min="1" max="31" pattern="[1-9]|[12][0-9]|3[01]" >
-                </label>
-                <label for="horas">Horas
-                    <input type="number" id="horas" style="width: 25px; text-align: end;" >:
-                    <input type="number" id="min" style="width: 25px;" value="00" name="minutos" min="0" max="59">
-                </label>
-                <label for="videos">Vídeos
-                    <input type="number" id="videos" style="width: 25px;" value="0">
-                </label>
-                <label for="publicacao">Publicações
-                    <input type="number" id="publicacoes" style="width: 25px;" value="0">
-                </label>
-                <label for="revisita">Revisitas
-                    <input type="number" id="revisitas" style="width: 25px;" value="0">
-                </label>
-            </div>
-            <div class="footer-dialogo">
-                <button id="fechar-dialogo" class="cancel"></button>
-                <button id="incluirAtividade" class="salvar"></button>
-            </div>
+            <h2 id="titleModal"></h2>
+            <div id="corpoModal" class="body-modal"></div>
+            <div id="btnsFooter" class="footer-dialogo"></div>
         </div>
     </div>
     <script src="./js/relatorioTabela.js"></script>
     <script src="./js/elementsDOM.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

@@ -22,7 +22,6 @@ header
     align-items: center;
     justify-content: space-between;
     background-color: var(--fundo1);
-    padding: .5rem;
     color: var(--fonte1);
     font-size: 24px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -32,7 +31,7 @@ header
 {
     border-bottom: 1px solid dodgerblue;
 }
-.relatorio ul
+ ul
 {
     list-style: none;
     width: 100%;
@@ -100,40 +99,18 @@ button,a
 
     background-color: transparent;
     border: none;
-    width: 40px;
-    height: 40px;
     background-repeat: no-repeat;
     background-position: center;
 }
-.previous
+
+#send, .next
 {
-    background-image: url(../icon/arrow-left-circle-fill.svg);
+    margin-right: 20px;
 }
-.next
+#qtdEstudos ion-icon
 {
-    margin-right: 30px;
-    background-image: url(../icon/arrow-right-circle-fill.svg);
-}
-.send
-{   
-    margin-right: 30px;
-    background-image: url(../icon/send-fill.svg);
-}
-.add
-{   
-    background-image: url(../icon/plus-circle-fill.svg);
-}
-.alvo
-{
-    background-image: url(../icon/bullseye.svg);
-}
-.cancel
-{
-    background-image: url(../icon/x-circle-fill.svg);
-}
-.salvar
-{
-    background-image: url(../icon/check-circle-fill.svg);
+    color: #4A148C;
+    font-size: 25px;
 }
 .caixa-dialogo {
     display: none;
@@ -162,17 +139,17 @@ button,a
   {
     text-align: center;
   }
-  .form-adiciona
+  .body-modal
   {
     display: flex;  
     flex-direction: column;
     align-items: flex-end;
   }
-  .form-adiciona label
+  .body-modal label
   {
     margin: 10px;
   }
-  .form-adiciona input
+  .body-modal input
   {
     padding: 8px;
     border: none;
@@ -204,7 +181,73 @@ button,a
     display: flex;
     align-items: center;
 }
-@media (max-width: 375px) {
-    /* estilos que você deseja aplicar */
-    
+ion-icon {
+    color: rgb(255, 255, 255);
+    font-size: 50px;
   }
+div#estudos
+{
+    width: 100%;
+    text-align: center;
+}
+button#estudanteAdd
+{
+    padding: 4px;
+    background-color: #4A148C;
+    border-radius: 10px ;
+    width: 50%;
+}
+button#estudantesEditar
+{
+    padding: 4px;
+    background-color: #b71c1c;
+    border-radius: 10px ;
+    width: 50%;
+}
+/* button#estudanteAdd
+{
+    padding: 4px;
+    background-color: #4A148C;
+    border-radius: 10px ;
+    width: 100%;
+} */
+#ul-estudos li
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--fundo4);
+    padding: 4px;
+    margin-bottom: 4px;
+    border-radius: 10px;
+}
+#ul-estudos li span:first-child
+{
+    border: 1px solid rgba(0, 0, 0, 0.256);
+    padding: 4px;
+    width: 40%;
+    border-radius: 10px;
+}
+#ul-estudos li span:first-child ~ span
+{
+
+    padding: 4px;
+    width: 60%;
+    border-radius: 10px;
+}
+.btnLi:not(:last-child)
+{
+    margin-right: 10px;
+    background-color: red;
+    border-radius: 50%;
+}
+.btnLi:last-child
+{
+    background-color: rgb(0, 123, 255);
+    border-radius: 50%;
+}
+.invisivel
+{
+    display: none;
+}
