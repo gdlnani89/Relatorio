@@ -38,8 +38,12 @@ const inpForm = document.querySelectorAll('.form-adiciona input')
 const btnAlvos = $id('alvo')
 const btnAdd = $id('add')
 const btnSend = $id('send')
-const text = `Segue o relatório de ${mesAtualString}: Horas ${calculaHorasTotal()}, Revisitas ${calculaRevisitasTotal()}, Videos ${calculaVideosTotal()}, Publicações ${calculaPublicacoesTotal()} e Estudos 0`;
-btnSend.setAttribute('href', `whatsapp://send?text=${text}`)
+
+btnSend.addEventListener('click', function(){
+    // event.preventDefault()
+    btnSend.setAttribute('href', `whatsapp://send?text=${atualiza.mensagemWhats()}`)
+    // this.onclick = window.open(`whatsapp://send?text=${atualiza.mensagemWhats()}`)
+})
 
 btnAdd.addEventListener('click', function() {
     divCxDialogo.classList.add('caixa-dialogo-aberta');
