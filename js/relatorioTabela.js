@@ -17,7 +17,9 @@ function tBodyCreate(inclusao, indice=''){
     btnEditExc.innerHTML = '<ion-icon name="trash" style="font-size: 20px; color: red"></ion-icon>'
     btnEditExc.addEventListener('click', function(){
         this.parentNode.parentNode.remove()
-        relatorio.mes[mesAtualString.toLowerCase()].splice(indice,1)
+        const mesInc = spMesRelatorio.innerText.toLowerCase()
+        const arrayRelatorio = relatorioAnoAtual.mes[mesInc]
+        arrayRelatorio.splice(indice,1)
         atualiza.relatorioLS()
         atualiza.relatorioTotais()
     })

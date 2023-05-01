@@ -6,48 +6,40 @@ document.addEventListener('click', (event) => {
 const btnVoltaMes = $id('voltarMes')
 btnVoltaMes.addEventListener('click', function(){
     countMes = meses[--mesAtualNumero]
-    console.log(countMes);
     spMesRelatorio.innerText = countMes
     if(relatorioAnoAtual.mes[countMes.toLowerCase()]){
-        tBody.innerHTML = ''
-        relatorioAnoAtual.mes[countMes.toLowerCase()].forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
+        atualiza.relatorioTotais()
+        /* tBody.innerHTML = ''
+        relatorioAnoAtual.mes[countMes.toLowerCase()].sort((a,b)=> a.dia - b.dia).forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
         spHorasTotal.innerText = calculaHorasTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
         spRevTotal.innerText = calculaRevisitasTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
         spVideosTotal.innerText = calculaVideosTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
-        spPubTotal.innerText = calculaPublicacoesTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
+        spPubTotal.innerText = calculaPublicacoesTotal(relatorioAnoAtual.mes[countMes.toLowerCase()]) */
     }else{
-        tBody.innerHTML = ''
-        spHorasTotal.innerText = 0
-        spRevTotal.innerText = 0
-        spVideosTotal.innerText = 0
-        spPubTotal.innerText = 0
+        atualiza.relatorioTotalVazio()
     }
 
 })
 const btnAvancaMes = $id('avancarMes')
 btnAvancaMes.addEventListener('click', function(){
     countMes = meses[++mesAtualNumero]
-    console.log(countMes);
     spMesRelatorio.innerText = countMes
     if(relatorioAnoAtual.mes[countMes.toLowerCase()]){
-        tBody.innerHTML = ''
+        atualiza.relatorioTotais()
+/*         tBody.innerHTML = ''
         relatorioAnoAtual.mes[countMes.toLowerCase()].forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
         spHorasTotal.innerText = calculaHorasTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
         spRevTotal.innerText = calculaRevisitasTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
         spVideosTotal.innerText = calculaVideosTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
-        spPubTotal.innerText = calculaPublicacoesTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
+        spPubTotal.innerText = calculaPublicacoesTotal(relatorioAnoAtual.mes[countMes.toLowerCase()]) */
     }else{
-        tBody.innerHTML = ''
-        spHorasTotal.innerText = 00
-        spRevTotal.innerText = 00
-        spVideosTotal.innerText = 00
-        spPubTotal.innerText = 00
+        atualiza.relatorioTotalVazio()
     }
 
 })
 const spMesRelatorio = $id('mesRelatorio')
 spMesRelatorio.innerText = mesAtualString
-//relatório totais
+//relatório-totais
 const spHorasTotal = $id('horasTotal')
 spHorasTotal.innerText = calculaHorasTotal(relatorioAnoAtual.mes[mesAtualString.toLowerCase()])
 const spRevTotal = $id('revisitasTotal')
@@ -67,7 +59,7 @@ btnQtdEstudos.addEventListener('click',function () {
 })
 //tabela relatorio
 const tBody = $id('tbody')
-relatorioAnoAtual.mes[mesAtualString.toLowerCase()].forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
+relatorioAnoAtual.mes[mesAtualString.toLowerCase()].sort((a,b)=> a.dia - b.dia).forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
 //modal elementos
 const h2Title = $id('titleModal')
 const divBodyModal = $id('corpoModal')

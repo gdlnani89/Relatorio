@@ -78,7 +78,7 @@ function calculaHorasTotal(relatorioMesArray){
         })
         return minutosParaHoras(somaTempo)
     }else{
-        return '00'
+        return '0'
     }
 }
 //fn do array das atividades cadastradas
@@ -90,7 +90,7 @@ function calculaRevisitasTotal(relatorioMesArray){
         })
         return soma
     }else{
-        return '00'
+        return '0'
     }
 }
 function calculaVideosTotal(relatorioMesArray){
@@ -101,7 +101,7 @@ function calculaVideosTotal(relatorioMesArray){
         },0)
         return soma
     }else{
-        return '00'
+        return '0'
     }
 }
 function calculaPublicacoesTotal(relatorioMesArray){
@@ -112,7 +112,7 @@ function calculaPublicacoesTotal(relatorioMesArray){
         })
         return soma
     }else{
-        return '00'
+        return '0'
     }
 }
 //render MODAL
@@ -246,12 +246,6 @@ const atualiza = {
     relatorioLS(){
         localStorage.setItem('relatorio', JSON.stringify(relatorio))
     },
-    relatorioTotais(){
-        spHorasTotal.innerText = calculaHorasTotal()
-        spRevTotal.innerText = calculaRevisitasTotal()
-        spVideosTotal.innerText = calculaVideosTotal()
-        spPubTotal.innerText = calculaPublicacoesTotal()
-    },
     estudosSpan(){
         spEstudosTotal.innerText = estudos.length 
     },
@@ -260,6 +254,21 @@ const atualiza = {
     },
     mensagemWhats(mesSelecionado,arrayRelatorio){
         return `Segue o relatório de ${mesSelecionado}: Horas ${calculaHorasTotal(arrayRelatorio)}, Revisitas ${calculaRevisitasTotal(arrayRelatorio)}, Videos ${calculaVideosTotal(arrayRelatorio)}, Publicações ${calculaPublicacoesTotal(arrayRelatorio)} e Estudos ${estudos.length}`;
+    },
+    relatorioTotalVazio(){
+        tBody.innerHTML = ''
+        spHorasTotal.innerText = 0
+        spRevTotal.innerText = 0
+        spVideosTotal.innerText = 0
+        spPubTotal.innerText = 0
+    },
+    relatorioTotais(){
+        tBody.innerHTML = ''
+        relatorioAnoAtual.mes[countMes.toLowerCase()].sort((a,b)=> a.dia - b.dia).forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
+        spHorasTotal.innerText = calculaHorasTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
+        spRevTotal.innerText = calculaRevisitasTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
+        spVideosTotal.innerText = calculaVideosTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
+        spPubTotal.innerText = calculaPublicacoesTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
     }
 }
 function ulEstudos(estudos){
@@ -341,7 +350,6 @@ const btnsEstudantes = ()=>{
     btnEditar.setAttribute('id', 'estudantesEditar')
     btnEditar.innerHTML = '<ion-icon name="create" style="color: white; font-size: 20px"></ion-icon>'
     btnEditar.addEventListener('click',function(){
-        // bEx.classList.add('btnLi')
         const btnsLi = $all('.btnLi')
         btnsLi.forEach(item => item.classList.remove('invisivel'))
         console.log(btnsLi);
@@ -366,7 +374,6 @@ function addAtividade(){
             revisitas : ipRev.value
         }
         const totalMinutos = (parseInt(ipHoras.value)*60)+(parseInt(ipMin.value))
-        console.log(totalMinutos);
         tBody.appendChild(tBodyCreate(atividade))
         const mesInc = spMesRelatorio.innerText.toLowerCase()
         const arrayRelatorio = relatorioAnoAtual.mes[mesInc]
@@ -393,7 +400,6 @@ function addAtividade(){
         console.log('falta horas');
     }
 }
-
 
 function addAlvo(){
 
