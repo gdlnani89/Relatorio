@@ -9,9 +9,17 @@ let ano = data.getFullYear()
 let meses = [ 'Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro' ]
 let mesAtualNumero = data.getMonth()
 let mesAtualString = meses[mesAtualNumero]
-
-let relatorio = localStorage.getItem('relatorio') ? JSON.parse(localStorage.getItem('relatorio')) : criaRelatorio(ano)
+let countMes = meses[mesAtualNumero]
+console.log(countMes);
+let relatorio = localStorage.getItem('relatorio') ? JSON.parse(localStorage.getItem('relatorio')) : [criaRelatorio(ano)]
 let estudos = localStorage.getItem('estudos') ? JSON.parse(localStorage.getItem('estudos')) : []
+
+let relatorioAnoAtual
+relatorio.forEach(i =>{
+    if(i.anoServico === ano){
+        relatorioAnoAtual = i
+    }
+}) 
 
 class Estudo {
     constructor(nome, obs = '') {
@@ -62,9 +70,9 @@ function minuHoras(minutos) {
     return {horas,minutosRestantes};
 }
 
-function calculaHorasTotal(){
-    if(relatorio.mes[mesAtualString.toLowerCase()].length>0){
-        let tempoArray = relatorio.mes[mesAtualString.toLowerCase()].map(item => item.tempo)
+function calculaHorasTotal(relatorioMesArray){
+    if(relatorioMesArray.length>0){
+        let tempoArray = relatorioMesArray.map(item => item.tempo)
         const somaTempo = tempoArray.reduce(function(acumulador,atual){
             return acumulador+atual
         })
@@ -74,9 +82,9 @@ function calculaHorasTotal(){
     }
 }
 //fn do array das atividades cadastradas
-function calculaRevisitasTotal(){
-    if(relatorio.mes[mesAtualString.toLowerCase()].length>0){
-        let somaArrya = relatorio.mes[mesAtualString.toLowerCase()].map(item => parseInt(item.revisitas)) 
+function calculaRevisitasTotal(relatorioMesArray){
+    if(relatorioMesArray.length>0){
+        let somaArrya = relatorioMesArray.map(item => parseInt(item.revisitas)) 
         const soma = somaArrya.reduce(function(acumulador,atual){
             return acumulador+atual
         })
@@ -85,10 +93,9 @@ function calculaRevisitasTotal(){
         return '00'
     }
 }
-
-function calculaVideosTotal(){
-    if(relatorio.mes[mesAtualString.toLowerCase()].length>0){
-        let somaArrya = relatorio.mes[mesAtualString.toLowerCase()].map(item => parseInt(item.videos))
+function calculaVideosTotal(relatorioMesArray){
+    if(relatorioMesArray.length>0){
+        let somaArrya = relatorioMesArray.map(item => parseInt(item.videos))
         const soma = somaArrya.reduce(function(acumulador,atual){
             return acumulador+atual
         },0)
@@ -97,10 +104,9 @@ function calculaVideosTotal(){
         return '00'
     }
 }
-
-function calculaPublicacoesTotal(){
-    if(relatorio.mes[mesAtualString.toLowerCase()].length>0){
-        let somaArrya = relatorio.mes[mesAtualString.toLowerCase()].map(item => parseInt(item.publicacoes))
+function calculaPublicacoesTotal(relatorioMesArray){
+    if(relatorioMesArray.length>0){
+        let somaArrya = relatorioMesArray.map(item => parseInt(item.publicacoes))
         const soma = somaArrya.reduce(function(acumulador,atual){
             return acumulador+atual
         })
@@ -237,15 +243,23 @@ const bodyRelatorio = () =>{
 }
 
 const atualiza = {
+    relatorioLS(){
+        localStorage.setItem('relatorio', JSON.stringify(relatorio))
+    },
+    relatorioTotais(){
+        spHorasTotal.innerText = calculaHorasTotal()
+        spRevTotal.innerText = calculaRevisitasTotal()
+        spVideosTotal.innerText = calculaVideosTotal()
+        spPubTotal.innerText = calculaPublicacoesTotal()
+    },
     estudosSpan(){
         spEstudosTotal.innerText = estudos.length 
     },
     estudosLS(){
         localStorage.setItem('estudos', JSON.stringify(estudos))
     },
-    mensagemWhats(){
-        console.log(estudos.length );
-        return `Segue o relatório de ${mesAtualString}: Horas ${calculaHorasTotal()}, Revisitas ${calculaRevisitasTotal()}, Videos ${calculaVideosTotal()}, Publicações ${calculaPublicacoesTotal()} e Estudos ${estudos.length}`;
+    mensagemWhats(mesSelecionado,arrayRelatorio){
+        return `Segue o relatório de ${mesSelecionado}: Horas ${calculaHorasTotal(arrayRelatorio)}, Revisitas ${calculaRevisitasTotal(arrayRelatorio)}, Videos ${calculaVideosTotal(arrayRelatorio)}, Publicações ${calculaPublicacoesTotal(arrayRelatorio)} e Estudos ${estudos.length}`;
     }
 }
 function ulEstudos(estudos){
@@ -268,9 +282,6 @@ function ulEstudos(estudos){
             estudos.splice(i,1)
             atualiza.estudosSpan()
             atualiza.estudosLS()
-            // event.target.remove()
-            // if(event.target.tagName == 'BUTTON' || event.target.tagName == 'ION-ICON' )event.target.parentNode.remove()
-            // event.target.parentNode.remove()
         })
         let bEd = $cria('button')
         bEd.classList.add('btnLi')
@@ -357,8 +368,9 @@ function addAtividade(){
         const totalMinutos = (parseInt(ipHoras.value)*60)+(parseInt(ipMin.value))
         console.log(totalMinutos);
         tBody.appendChild(tBodyCreate(atividade))
-        const mesInc = mesAtualString.toLowerCase()
-        relatorio.mes[mesInc].push(incluiAtividade(
+        const mesInc = spMesRelatorio.innerText.toLowerCase()
+        const arrayRelatorio = relatorioAnoAtual.mes[mesInc]
+        arrayRelatorio.push(incluiAtividade(
             atividade.dia,
             totalMinutos,
             atividade.videos,
@@ -367,17 +379,16 @@ function addAtividade(){
             spEstudosTotal.innerText
             )
         )
-        console.log(relatorio.mes[mesInc]);
         inpForm.forEach(inp => inp.value = '0')
         ipDia.value = dia
         ipMin.value = '00'      
         divCxDialogo.classList.remove('caixa-dialogo-aberta');  
         localStorage.setItem('relatorio', JSON.stringify(relatorio))
-        spHorasTotal.innerText = calculaHorasTotal()
-        spRevTotal.innerText = calculaRevisitasTotal()
-        spPubTotal.innerText = calculaPublicacoesTotal()
-        spVideosTotal.innerText = calculaRevisitasTotal()
-        btnSend.setAttribute('href', `whatsapp://send?text=${text}`)
+        spHorasTotal.innerText = calculaHorasTotal(relatorioAnoAtual.mes[mesInc])
+        spRevTotal.innerText = calculaRevisitasTotal(relatorioAnoAtual.mes[mesInc])
+        spPubTotal.innerText = calculaPublicacoesTotal(relatorioAnoAtual.mes[mesInc])
+        spVideosTotal.innerText = calculaRevisitasTotal(relatorioAnoAtual.mes[mesInc])
+        btnSend.setAttribute('href', `whatsapp://send?text=${atualiza.mensagemWhats(mesInc,arrayRelatorio)}`)
     }else{
         console.log('falta horas');
     }

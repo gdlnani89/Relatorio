@@ -20,11 +20,14 @@
 </head>
 <body>
     <header>
-        <button class="previous">
+        <button id="voltarMes" class="previous">
             <ion-icon name="caret-back-circle"></ion-icon>
         </button>
-        <span id="mesRelatorio" class="mes">Abril</span>
-        <button class="next">
+        <div class="periodo">
+            <span id="mesRelatorio" class="mes">Abril</span>
+            <span id="anoRelatorio" class="ano">2023</span>
+        </div>
+        <button id="avancarMes" class="next">
             <ion-icon name="caret-forward-circle"></ion-icon>
         </button>
     </header>
@@ -36,21 +39,21 @@
                     <span id="horasTotal">00:00</span>
                 </li>
                 <li>
-                    <span class="dado">Revisitas</span>
-                    <span id="revisitasTotal">00</span>
+                    <span class="dado">Revisitas(Rev.)</span>
+                    <span id="revisitasTotal">0</span>
                 </li>
                 <li>
                     <span class="dado">Vídeos</span>
-                    <span id="videosTotal">00</span>
+                    <span id="videosTotal">0</span>
                 </li>
                 <li>
-                    <span class="dado">Publicações</span>
-                    <span id="pubTotal">00</span>
+                    <span class="dado">Publicações(Pub.)</span>
+                    <span id="pubTotal">0</span>
                 </li>
                 <li>
                     <span class="dado">Estudos</span>
                     <div class="editaEstudo">
-                        <span id="estudosTotal">00</span>
+                        <span id="estudosTotal">0</span>
                         <button id="qtdEstudos" title="Alterar">
                             <ion-icon name="create"></ion-icon>
                         </button>
@@ -66,8 +69,9 @@
                     <th>Dia</th>
                     <th>Horas</th>
                     <th>Vídeos</th>
-                    <th>Publicações</th>
-                    <th>Revisitas</th>
+                    <th>Pub.</th>
+                    <th>Rev.</th>
+                    <th>Editar</th>
                   </tr>
                 </thead>
                 <tbody id="tbody"></tbody>
