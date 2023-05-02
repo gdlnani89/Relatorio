@@ -7,35 +7,13 @@ const btnVoltaMes = $id('voltarMes')
 btnVoltaMes.addEventListener('click', function(){
     countMes = meses[--mesAtualNumero]
     spMesRelatorio.innerText = countMes
-    if(relatorioAnoAtual.mes[countMes.toLowerCase()]){
-        atualiza.relatorioTotais()
-        /* tBody.innerHTML = ''
-        relatorioAnoAtual.mes[countMes.toLowerCase()].sort((a,b)=> a.dia - b.dia).forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
-        spHorasTotal.innerText = calculaHorasTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
-        spRevTotal.innerText = calculaRevisitasTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
-        spVideosTotal.innerText = calculaVideosTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
-        spPubTotal.innerText = calculaPublicacoesTotal(relatorioAnoAtual.mes[countMes.toLowerCase()]) */
-    }else{
-        atualiza.relatorioTotalVazio()
-    }
-
+    relatorioAnoAtual.mes[countMes.toLowerCase()] ? atualiza.relatorioTotais() : atualiza.relatorioTotalVazio()
 })
 const btnAvancaMes = $id('avancarMes')
 btnAvancaMes.addEventListener('click', function(){
     countMes = meses[++mesAtualNumero]
     spMesRelatorio.innerText = countMes
-    if(relatorioAnoAtual.mes[countMes.toLowerCase()]){
-        atualiza.relatorioTotais()
-/*         tBody.innerHTML = ''
-        relatorioAnoAtual.mes[countMes.toLowerCase()].forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
-        spHorasTotal.innerText = calculaHorasTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
-        spRevTotal.innerText = calculaRevisitasTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
-        spVideosTotal.innerText = calculaVideosTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
-        spPubTotal.innerText = calculaPublicacoesTotal(relatorioAnoAtual.mes[countMes.toLowerCase()]) */
-    }else{
-        atualiza.relatorioTotalVazio()
-    }
-
+    relatorioAnoAtual.mes[countMes.toLowerCase()]? atualiza.relatorioTotais() : atualiza.relatorioTotalVazio()
 })
 const spMesRelatorio = $id('mesRelatorio')
 spMesRelatorio.innerText = mesAtualString

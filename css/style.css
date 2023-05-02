@@ -82,6 +82,10 @@ header .periodo .ano
     width: 30%;
     text-align: right;
 }
+.relatorio #estudosTotal
+{
+    font-weight: bold;
+}
 .editar
 {
     background-image: url(../icon/pencil-fill.svg);
@@ -115,6 +119,16 @@ main
 .tabela table tr td:last-child button:first-child
 {
     flex: 2;
+}
+.tabela table input
+{
+    text-align: center;
+}
+.tabela table input[disabled]
+{
+    background-color: transparent;
+    color: #4A148C;
+    border: none;
 }
 footer
 {

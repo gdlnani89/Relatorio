@@ -374,7 +374,7 @@ function addAtividade(){
             revisitas : ipRev.value
         }
         const totalMinutos = (parseInt(ipHoras.value)*60)+(parseInt(ipMin.value))
-        tBody.appendChild(tBodyCreate(atividade))
+        // tBody.appendChild(tBodyCreate(atividade))
         const mesInc = spMesRelatorio.innerText.toLowerCase()
         const arrayRelatorio = relatorioAnoAtual.mes[mesInc]
         arrayRelatorio.push(incluiAtividade(
@@ -386,6 +386,8 @@ function addAtividade(){
             spEstudosTotal.innerText
             )
         )
+        tBody.innerHTML = ''
+        arrayRelatorio.sort((a,b)=> a.dia - b.dia).forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
         inpForm.forEach(inp => inp.value = '0')
         ipDia.value = dia
         ipMin.value = '00'      
@@ -403,4 +405,22 @@ function addAtividade(){
 
 function addAlvo(){
 
+}
+const noneHabilita = {
+    habilitaInps(array,b){
+        if(b){
+            array.forEach(element => {
+                element.removeAttribute('disabled')
+                }
+            )
+        }else{
+            array.forEach(element => {
+                element.setAttribute('disabled', true)
+                }
+            )
+        }
+    },
+    none(elemento,b){
+        b ? elemento.classList.add('invisivel') : elemento.classList.remove('invisivel')
+    }
 }
