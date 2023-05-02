@@ -24,7 +24,7 @@ header
     background-color: var(--fundo1);
     color: var(--fonte1);
     font-size: 24px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
     position: fixed;
 }
 header .periodo
@@ -40,7 +40,7 @@ header .periodo .ano
 .relatorio
 {
     background-color: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding-top: 65px;
 }
  ul
 {
@@ -86,26 +86,28 @@ header .periodo .ano
 {
     font-weight: bold;
 }
-.editar
-{
-    background-image: url(../icon/pencil-fill.svg);
-}
 main
 {
-    height: 100%;
-    padding-top: 65px;
-}
-.tabela
-{
-    height: 100%;
-    width: 100%;
-    padding-top: 10px;
+    height: 55vh;
+    overflow: auto;
 }
 .tabela table
 {
     width: 100%;
     text-align: center;
 }
+.tabela table thead
+{
+    position: sticky ;
+    top: -1px;
+    background-color: var(--fundo2);
+    z-index: 1;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+/* .tabela table tbody
+{
+    display: block;
+} */
 .tabela table tr:nth-child(even)
 {
     background-color: var(--fundo4);
@@ -254,13 +256,7 @@ button#estudantesEditar
     border-radius: 10px ;
     width: 50%;
 }
-/* button#estudanteAdd
-{
-    padding: 4px;
-    background-color: #4A148C;
-    border-radius: 10px ;
-    width: 100%;
-} */
+
 #ul-estudos li
 {
     width: 100%;

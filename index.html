@@ -31,51 +31,49 @@
             <ion-icon name="caret-forward-circle"></ion-icon>
         </button>
     </header>
-    <main>
-        <div class="relatorio">
-            <ul>
-                <li>
-                    <span class="dado">Horas</span>
-                    <span id="horasTotal">00:00</span>
-                </li>
-                <li>
-                    <span class="dado">Revisitas(Rev.)</span>
-                    <span id="revisitasTotal">0</span>
-                </li>
-                <li>
-                    <span class="dado">Vídeos</span>
-                    <span id="videosTotal">0</span>
-                </li>
-                <li>
-                    <span class="dado">Publicações(Pub.)</span>
-                    <span id="pubTotal">0</span>
-                </li>
-                <li>
-                    <span class="dado">Estudos</span>
-                    <div class="editaEstudo">
-                        <span id="estudosTotal">0</span>
-                        <button id="qtdEstudos" title="Alterar">
-                            <ion-icon name="create"></ion-icon>
-                        </button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="tabela">
-            <table>
-                <thead>
-                  <tr>
+    <section class="relatorio">
+        <ul>
+            <li>
+                <span class="dado">Horas</span>
+                <span id="horasTotal">00:00</span>
+            </li>
+            <li>
+                <span class="dado">Revisitas(Rev.)</span>
+                <span id="revisitasTotal">0</span>
+            </li>
+            <li>
+                <span class="dado">Vídeos</span>
+                <span id="videosTotal">0</span>
+            </li>
+            <li>
+                <span class="dado">Publicações(Pub.)</span>
+                <span id="pubTotal">0</span>
+            </li>
+            <li>
+                <span class="dado">Estudos</span>
+                <div class="editaEstudo">
+                    <span id="estudosTotal">0</span>
+                    <button id="qtdEstudos" title="Alterar">
+                        <ion-icon name="create"></ion-icon>
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </section>
+    <main class="tabela">
+        <table>
+            <thead>
+                <tr>
                     <th>Dia</th>
                     <th>Horas</th>
                     <th>Vídeos</th>
                     <th>Pub.</th>
                     <th>Rev.</th>
                     <th>Editar</th>
-                  </tr>
-                </thead>
-                <tbody id="tbody"></tbody>
-              </table>
-        </div>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
     </main>
     <footer>
         <button id="alvo" title="Alvos">
