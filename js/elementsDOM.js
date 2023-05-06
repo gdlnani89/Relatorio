@@ -33,7 +33,7 @@ btnQtdEstudos.addEventListener('click',function () {
     divCxDialogo.classList.add('caixa-dialogo-aberta');
     modalTitulo('Estudos')
     modalCorpo(bodyEstudos())
-    modalFooter(btnsEstudantes())
+    modalFooter([])
 })
 //tabela relatorio
 const tBody = $id('tbody')
@@ -68,7 +68,7 @@ btnAlvos.addEventListener('click', function() {
     divCxDialogo.classList.add('caixa-dialogo-aberta');
     modalTitulo('Alvos')
     modalCorpo([])
-    modalFooter([btnCancel(),btnSalvar(addAlvo)])
+    modalFooter([])
     }
 );
 

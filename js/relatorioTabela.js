@@ -1,4 +1,7 @@
 function tBodyCreate(inclusao, indice=''){
+    const arrayMesAtual = relatorioAnoAtual.mes[countMes.toLocaleLowerCase()]
+    const atividadeAtual = arrayMesAtual[indice]
+
     const tempo = minuHoras(inclusao.tempo)
     const tr = $cria('tr')
     const tdDia = $cria('td')
@@ -7,13 +10,13 @@ function tBodyCreate(inclusao, indice=''){
     const tdPub = $cria('td')
     const tdRev = $cria('td')
     const tdEdit = $cria('td')
-
+    
     const ipDia = $cria('input')
     ipDia.setAttribute('style', 'width: 18px')
     ipDia.setAttribute('value', inclusao.dia)
     ipDia.setAttribute('disabled', true)
     tdDia.appendChild(ipDia)
-
+    
     const ipHoras = $cria('input')
     ipHoras.setAttribute('style', 'width: 35px')
     ipHoras.setAttribute('value', `${tempo.horas}:${tempo.minutosRestantes}`)
@@ -34,7 +37,7 @@ function tBodyCreate(inclusao, indice=''){
     ipRev.setAttribute('value', inclusao.revisitas)
     ipRev.setAttribute('disabled', true)
     tdRev.appendChild(ipRev)
-
+    
     const btnEditExc = $cria('button')
     btnEditExc.innerHTML = '<ion-icon name="trash" style="font-size: 20px; color: red"></ion-icon>'
     btnEditExc.addEventListener('click', function(){
@@ -54,13 +57,51 @@ function tBodyCreate(inclusao, indice=''){
         btnsEditar(avo,btn,true)
     })
     const btnEditSalvar = $cria('button')
+    btnEditSalvar.setAttribute('id','btnSalvarEditEst')
     noneHabilita.none(btnEditSalvar,true)
     btnEditSalvar.innerHTML = '<ion-icon name="checkmark-circle" style="font-size: 20px; color: #009688"></ion-icon>'
+    btnEditSalvar.addEventListener('click',function(){
+        const inicial = {...inclusao}
+        let tempoInputSplit = ipHoras.value.split(':')
+        let tempoInput = tempoInputSplit[0]*60+parseInt(tempoInputSplit[1])
+        if(inclusao.dia !== ipDia.value){
+            atividadeAtual.dia = ipDia.value
+            console.log(inclusao);
+        }
+        if(inclusao.tempo !== tempoInput){
+            atividadeAtual.tempo = tempoInput
+            console.log(inclusao);
+        }
+        if(inclusao.videos !== ipVideos.value){
+            atividadeAtual.videos = ipVideos.value
+            console.log(inclusao);
+        }
+        if(inclusao.publicacoes !== ipPub.value){
+            atividadeAtual.publicacoes = ipPub.value
+            console.log(inclusao);
+        }
+        if(inclusao.revisitas !== ipRev.value){
+            atividadeAtual.revisitas = ipRev.value
+            console.log(inclusao);
+        }
+        const isModified = JSON.stringify(inicial) !== JSON.stringify(inclusao)
+        if(isModified){
+            atualiza.relatorioLS() 
+            atualiza.relatorioTotais()
+        }
+        const avo = this.parentNode.parentNode
+        const btn = this
+        noneHabilita.habilitaInps(avo.querySelectorAll('INPUT'),false)
+        noneHabilita.none(btnEditSalvar,true)
+        noneHabilita.none(btnEditEdita,false)
+        noneHabilita.none(btn,true)
+        noneHabilita.none(btnEditVoltar,true)
+        noneHabilita.none(btnEditExc,false)
+    })
     const btnEditVoltar = $cria('button')
     btnEditVoltar.addEventListener('click',function(){
         const avo = this.parentNode.parentNode
         const btn = this
-        console.log(btn);
         btnsEditar(avo,btn,false)
     })
     btnEditVoltar.classList.add('invisivel')
