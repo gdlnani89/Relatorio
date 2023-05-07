@@ -1,3 +1,83 @@
+const bodyRelatorio = () =>{
+    const ele = []
+    {/* <label for="dia">Dia
+        <input value='${dia}' type="number" id="dia" style="width: 25px;" name="dias" min="1" max="31" pattern="[1-9]|[12][0-9]|3[01]" >
+    </label> */}
+    let lDia = $cria('label') 
+    lDia.setAttribute('for', 'dia')
+    lDia.innerText = 'Dia'
+    let iDia = $cria('input')
+    iDia.setAttribute('value', dia)
+    iDia.setAttribute('type', 'number')
+    iDia.setAttribute('id', 'dia')
+    iDia.setAttribute('name', 'dia')
+    iDia.setAttribute('min', '1')
+    iDia.setAttribute('max', '31')
+    iDia.setAttribute('pattern','[1-9]|[12][0-9]|3[01]')
+    iDia.setAttribute('style', 'width: 35px;')
+    lDia.appendChild(iDia)
+    {/* <label for="horas">Horas
+        <input type="number" id="horas" style="width: 25px; text-align: end;" >:
+        <input type="number" id="min" style="width: 25px;" value="00" name="minutos" min="0" max="59">
+    </label> */}
+    let lHoras = $cria('label')
+    lHoras.setAttribute('for', 'horas')
+    lHoras.innerText = 'Horas'
+    let iHoras = $cria('input')
+    iHoras.setAttribute('type', 'number')
+    iHoras.setAttribute('id', 'horas')
+    iHoras.setAttribute('value', '0')
+    iHoras.setAttribute('style', 'width: 25px; text-align: end;')
+    lHoras.appendChild(iHoras)
+    let p = $cria('p')
+    p.innerText = ':'
+    lHoras.appendChild(p)
+    let iMin = $cria('input')
+    iMin.setAttribute('type', 'number')
+    iMin.setAttribute('id', 'min')
+    iMin.setAttribute('value', '00')
+    iMin.setAttribute('style', 'width: 25px; text-align: end;')
+    lHoras.appendChild(iMin)
+    {/* <label for="videos">Vídeos
+        <input type="number" id="videos" style="width: 25px;" value="0">
+    </label> */}
+    let lVideos = $cria('label')
+    lVideos.setAttribute('for', 'videos')
+    lVideos.innerText = 'Vídeos'
+    let iVideos = $cria('input')
+    iVideos.setAttribute('type', 'number')
+    iVideos.setAttribute('id', 'videos')
+    iVideos.setAttribute('value', '0')
+    iVideos.setAttribute('style', 'width: 25px; text-align: end;')
+    lVideos.appendChild(iVideos)
+    {/* <label for="publicacao">Publicações
+        <input type="number" id="publicacoes" style="width: 25px;" value="0">
+    </label> */}
+    let lPub = $cria('label')
+    lPub.setAttribute('for', 'publicacao')
+    lPub.innerText = 'Publicações'
+    let iPub = $cria('input')
+    iPub.setAttribute('type', 'number')
+    iPub.setAttribute('id', 'publicacoes')
+    iPub.setAttribute('value', '0')
+    iPub.setAttribute('style', 'width: 25px; text-align: end;')
+    lPub.appendChild(iPub)
+    {/* <label for="revisita">Revisitas
+        <input type="number" id="revisitas" style="width: 25px;" value="0">
+    </label> */}
+    let lRev = $cria('label')
+    lRev.setAttribute('for', 'revisita')
+    lRev.innerText = 'Revisitas'
+    let iRev = $cria('input')
+    iRev.setAttribute('type', 'number')
+    iRev.setAttribute('id', 'revisitas')
+    iRev.setAttribute('value', '0')
+    iRev.setAttribute('style', 'width: 25px; text-align: end;')
+    lRev.appendChild(iRev)
+    ele.push(lDia,lHoras,lVideos,lPub,lRev)
+
+    return ele
+}
 function tBodyCreate(inclusao, indice=''){
     const arrayMesAtual = relatorioAnoAtual.mes[countMes.toLocaleLowerCase()]
     const atividadeAtual = arrayMesAtual[indice]
@@ -136,4 +216,48 @@ function tBodyCreate(inclusao, indice=''){
     }
     
     return tr
+}
+function addAtividade(){
+    const ipDia = $id('dia')
+    const ipHoras = $id('horas')
+    const ipMin = $id('min')
+    const ipVideos = $id('videos')
+    const ipPub = $id('publicacoes')
+    const ipRev = $id('revisitas')
+    if(ipDia.value && ipHoras.value || ipMin.value ){
+        const atividade = {
+            dia : ipDia.value,
+            tempo : (parseInt(ipHoras.value)*60)+(parseInt(ipMin.value)),
+            videos : ipVideos.value,
+            publicacoes : ipPub.value,
+            revisitas : ipRev.value
+        }
+        const totalMinutos = (parseInt(ipHoras.value)*60)+(parseInt(ipMin.value))
+        // tBody.appendChild(tBodyCreate(atividade))
+        const mesInc = spMesRelatorio.innerText.toLowerCase()
+        const arrayRelatorio = relatorioAnoAtual.mes[mesInc]
+        arrayRelatorio.push(incluiAtividade(
+            atividade.dia,
+            totalMinutos,
+            atividade.videos,
+            atividade.publicacoes,
+            atividade.revisitas,
+            spEstudosTotal.innerText
+            )
+        )
+        tBody.innerHTML = ''
+        arrayRelatorio.sort((a,b)=> a.dia - b.dia).forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
+        inpForm.forEach(inp => inp.value = '0')
+        ipDia.value = dia
+        ipMin.value = '00'      
+        divCxDialogo.classList.remove('caixa-dialogo-aberta');  
+        localStorage.setItem('relatorio', JSON.stringify(relatorio))
+        spHorasTotal.innerText = calculaHorasTotal(relatorioAnoAtual.mes[mesInc])
+        spRevTotal.innerText = calculaRevisitasTotal(relatorioAnoAtual.mes[mesInc])
+        spPubTotal.innerText = calculaPublicacoesTotal(relatorioAnoAtual.mes[mesInc])
+        spVideosTotal.innerText = calculaRevisitasTotal(relatorioAnoAtual.mes[mesInc])
+        btnSend.setAttribute('href', `whatsapp://send?text=${atualiza.mensagemWhats(mesInc,arrayRelatorio)}`)
+    }else{
+        console.log('falta horas');
+    }
 }

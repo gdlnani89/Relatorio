@@ -35,6 +35,16 @@ btnQtdEstudos.addEventListener('click',function () {
     modalCorpo(bodyEstudos())
     modalFooter([])
 })
+const spAlvoTempo = $id('alvoTempo')
+if(alvo){
+    const tempoAtual = totalMinutos()
+    const tempoAlvo = alvo.horas * 60
+    spAlvoTempo.innerText = minutosParaHoras(tempoAlvo-tempoAtual)
+    console.log(minutosParaHoras(tempoAlvo-tempoAtual));
+    // spAlvoTempo.innerText = `${-alvo.horas}`
+
+}
+
 //tabela relatorio
 const tBody = $id('tbody')
 relatorioAnoAtual.mes[mesAtualString.toLowerCase()].sort((a,b)=> a.dia - b.dia).forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
@@ -60,15 +70,15 @@ btnSend.addEventListener('click', function(){
 btnAdd.addEventListener('click', function() {
     divCxDialogo.classList.add('caixa-dialogo-aberta');
     modalTitulo('Adicionar atividade')
-    modalCorpo(bodyRelatorio())
-    modalFooter([btnCancel(),btnSalvar(addAtividade)])
+    modalCorpo(bodyRelatorio(),'addRelatorio')
+    modalFooter([btnCancel(),btnSalvar(addAtividade,'fechar-incluirAtividade')])
     }
 );
 btnAlvos.addEventListener('click', function() {
     divCxDialogo.classList.add('caixa-dialogo-aberta');
     modalTitulo('Alvos')
-    modalCorpo([])
-    modalFooter([])
+    modalCorpo(bodyAlvo())
+    modalFooter([btnCancel(),btnSalvar(addAlvo,'sair-incluirAlvo')])
     }
 );
 
