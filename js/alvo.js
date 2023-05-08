@@ -25,7 +25,7 @@ function bodyAlvo(){
     lHorasAlvo.innerText = 'Alvo de horas'
     const ipHorasAlvo = $cria('INPUT')
     lHorasAlvo.appendChild(ipHorasAlvo)
-    ipHorasAlvo.value = 0
+    alvo ? ipHorasAlvo.value = alvo.horas : ipHorasAlvo.value = 0
     ipHorasAlvo.setAttribute('type', 'text')
     ipHorasAlvo.setAttribute('id', 'horasAlvo')
     slTipos.addEventListener('change', function () {
@@ -40,8 +40,15 @@ function addAlvo() {
     const slOption = slTipo.options[slTipo.selectedIndex]
     const slTexto = slOption.textContent
     const ipHoras = $id('horasAlvo')
-    const alvo = alvosCria(slTexto,ipHoras.value)
-    localStorage.setItem('alvo', JSON.stringify(alvo))
-    //atualizar no totais
+    const alvoCria = alvosCria(slTexto,ipHoras.value)
+    localStorage.setItem('alvo', JSON.stringify(alvoCria))
+    atualiza.alvo()
     divCxDialogo.classList.remove('caixa-dialogo-aberta');
+}
+function setAlvoDiv(){
+    const lsAlvo = JSON.parse(localStorage.getItem('alvo'))
+    const tempoAtual = totalMinutos() || 0
+    const tempoAlvo = lsAlvo.horas * 60
+    console.log(tempoAlvo-tempoAtual);
+    return minutosParaHoras(tempoAlvo-tempoAtual)
 }

@@ -139,7 +139,7 @@ function modalFooter(btns){
     divBtnsFooter.innerHTML = ''
     btns.forEach(btn => divBtnsFooter.appendChild(btn))
 }
-
+//funçoes para atualizar tela apos inclusoes
 const atualiza = {
     relatorioLS(){
         localStorage.setItem('relatorio', JSON.stringify(relatorio))
@@ -164,9 +164,21 @@ const atualiza = {
         tBody.innerHTML = ''
         relatorioAnoAtual.mes[countMes.toLowerCase()].sort((a,b)=> a.dia - b.dia).forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
         spHorasTotal.innerText = calculaHorasTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
+        // spAlvoHoras.innerText = setAlvoDiv()
+        atualiza.alvo()
         spRevTotal.innerText = calculaRevisitasTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
         spVideosTotal.innerText = calculaVideosTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
         spPubTotal.innerText = calculaPublicacoesTotal(relatorioAnoAtual.mes[countMes.toLowerCase()])
+    },
+    alvo(){
+        if(alvo){
+            if(setAlvoDiv()< 0)console.log(setAlvoDiv());
+            spAlvoHoras.innerText = setAlvoDiv()
+        }else{
+            divAlvoTempo.classList.add('invisivel')
+            spAlvoHoras.innerText = ''
+        }
+        // spAlvoHoras.innerText = setAlvoDiv()
     }
 }
 // Btns

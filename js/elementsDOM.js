@@ -35,16 +35,15 @@ btnQtdEstudos.addEventListener('click',function () {
     modalCorpo(bodyEstudos())
     modalFooter([])
 })
-const spAlvoTempo = $id('alvoTempo')
+const divAlvoTempo = $id('alvoDiv')
+const spAlvoHoras = $id('alvoHoras')
+// alvo ? divAlvoTempo.innerHTML = `${setAlvoDiv()}<ion-icon name="rocket" style="font-size: 24px;color: #4A148C;"></ion-icon>` : ''
 if(alvo){
-    const tempoAtual = totalMinutos()
-    const tempoAlvo = alvo.horas * 60
-    spAlvoTempo.innerText = minutosParaHoras(tempoAlvo-tempoAtual)
-    console.log(minutosParaHoras(tempoAlvo-tempoAtual));
-    // spAlvoTempo.innerText = `${-alvo.horas}`
-
+    spAlvoHoras.innerText = setAlvoDiv()
+}else{
+    divAlvoTempo.classList.add('invisivel')
+    spAlvoHoras.innerText = ''
 }
-
 //tabela relatorio
 const tBody = $id('tbody')
 relatorioAnoAtual.mes[mesAtualString.toLowerCase()].sort((a,b)=> a.dia - b.dia).forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))

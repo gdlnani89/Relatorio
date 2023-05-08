@@ -1,3 +1,4 @@
+//modal corpo relatorio form
 const bodyRelatorio = () =>{
     const ele = []
     {/* <label for="dia">Dia
@@ -78,6 +79,7 @@ const bodyRelatorio = () =>{
 
     return ele
 }
+//tabela no main
 function tBodyCreate(inclusao, indice=''){
     const arrayMesAtual = relatorioAnoAtual.mes[countMes.toLocaleLowerCase()]
     const atividadeAtual = arrayMesAtual[indice]
@@ -252,12 +254,13 @@ function addAtividade(){
         ipMin.value = '00'      
         divCxDialogo.classList.remove('caixa-dialogo-aberta');  
         localStorage.setItem('relatorio', JSON.stringify(relatorio))
-        spHorasTotal.innerText = calculaHorasTotal(relatorioAnoAtual.mes[mesInc])
-        spRevTotal.innerText = calculaRevisitasTotal(relatorioAnoAtual.mes[mesInc])
-        spPubTotal.innerText = calculaPublicacoesTotal(relatorioAnoAtual.mes[mesInc])
-        spVideosTotal.innerText = calculaRevisitasTotal(relatorioAnoAtual.mes[mesInc])
+        atualiza.relatorioTotais()
         btnSend.setAttribute('href', `whatsapp://send?text=${atualiza.mensagemWhats(mesInc,arrayRelatorio)}`)
     }else{
         console.log('falta horas');
     }
 }
+// function spHorasTotal(){
+//     const sHorasTotal = $cria('SPAN')
+//     sHorasTotal.setAttribute('id', 'horasTotal')
+// }
