@@ -210,6 +210,25 @@ const noneHabilita = {
         b ? elemento.classList.add('invisivel') : elemento.classList.remove('invisivel')
     }
 }
+function btnAnimation(btn){
+    btn.classList.add('clicked');
+
+    setTimeout(() => {
+        btn.classList.remove('clicked');
+    }, 300);
+}
+function avancaVolta(countMes){
+    spMesRelatorio.innerText = countMes
+    relatorioAnoAtual.mes[countMes.toLowerCase()]? atualiza.relatorioTotais() : atualiza.relatorioTotalVazio()
+    if((countMes === alvo.mes) && (alvo.ano === relatorioAnoAtual.anoServico)){
+        spHorasFalta.innerText = setAlvoDiv()
+        spAlvoHoras.innerText = alvo.horas+'h'
+        divAlvoTempo.classList.remove('invisivel')
+    }else{
+        divAlvoTempo.classList.add('invisivel')
+        spHorasFalta.innerText = ''
+    }
+}
 // // Obtém o elemento <link> do favicon
 // const favicon = document.querySelector('link[rel="icon"]');
 

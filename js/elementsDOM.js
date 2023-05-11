@@ -5,53 +5,31 @@ document.addEventListener('click', (event) => {
 //header mes e setas
 const btnVoltaMes = $id('voltarMes')
 btnVoltaMes.addEventListener('click', function(){
-    btnVoltaMes.classList.add('clicked');
-
-    setTimeout(() => {
-        btnVoltaMes.classList.remove('clicked');
-    }, 300);
+    btnAnimation(this)
     countMes = meses[--mesAtualNumero]
-    spMesRelatorio.innerText = countMes
-    relatorioAnoAtual.mes[countMes.toLowerCase()] ? atualiza.relatorioTotais() : atualiza.relatorioTotalVazio()
-    if((countMes === alvo.mes) && (alvo.ano === relatorioAnoAtual.anoServico)){
-        spHorasFalta.innerText = setAlvoDiv()
-        spAlvoHoras.innerText = alvo.horas+'h'
-        divAlvoTempo.classList.remove('invisivel')
-    }else{
-        divAlvoTempo.classList.add('invisivel')
-        spHorasFalta.innerText = ''
-    }
+    avancaVolta(countMes)
 })
 const btnAvancaMes = $id('avancarMes')
 btnAvancaMes.addEventListener('click', function(){
-    btnAvancaMes.classList.add('clicked');
-
-    setTimeout(() => {
-        btnAvancaMes.classList.remove('clicked');
-    }, 300);
+    btnAnimation(this)
     countMes = meses[++mesAtualNumero]
-    spMesRelatorio.innerText = countMes
-    relatorioAnoAtual.mes[countMes.toLowerCase()]? atualiza.relatorioTotais() : atualiza.relatorioTotalVazio()
-    if((countMes === alvo.mes) && (alvo.ano === relatorioAnoAtual.anoServico)){
-        spHorasFalta.innerText = setAlvoDiv()
-        spAlvoHoras.innerText = alvo.horas+'h'
-        divAlvoTempo.classList.remove('invisivel')
-    }else{
-        divAlvoTempo.classList.add('invisivel')
-        spHorasFalta.innerText = ''
-    }
+    avancaVolta(countMes)
 })
 const spMesRelatorio = $id('mesRelatorio')
 spMesRelatorio.innerText = mesAtualString
 //relatório-totais
 const spHorasTotal = $id('horasTotal')
-spHorasTotal.innerText = calculaHorasTotal(relatorioAnoAtual.mes[mesAtualString.toLowerCase()])
+spHorasTotal.innerText = calculaHorasTotal
+    (relatorioAnoAtual.mes[mesAtualString.toLowerCase()])
 const spRevTotal = $id('revisitasTotal')
-spRevTotal.innerText = calculaRevisitasTotal(relatorioAnoAtual.mes[mesAtualString.toLowerCase()])
+spRevTotal.innerText = calculaRevisitasTotal
+    (relatorioAnoAtual.mes[mesAtualString.toLowerCase()])
 const spVideosTotal = $id('videosTotal')
-spVideosTotal.innerText = calculaVideosTotal(relatorioAnoAtual.mes[mesAtualString.toLowerCase()])
+spVideosTotal.innerText = calculaVideosTotal
+    (relatorioAnoAtual.mes[mesAtualString.toLowerCase()])
 const spPubTotal = $id('pubTotal')
-spPubTotal.innerText = calculaPublicacoesTotal(relatorioAnoAtual.mes[mesAtualString.toLowerCase()])
+spPubTotal.innerText = calculaPublicacoesTotal
+    (relatorioAnoAtual.mes[mesAtualString.toLowerCase()])
 const spEstudosTotal = $id('estudosTotal')
 estudos.lenght === 0 ? spEstudosTotal.innerText = '00' : atualiza.estudosSpan()
 const btnQtdEstudos = $id('qtdEstudos')
@@ -75,7 +53,9 @@ if(alvo){
 }
 //tabela relatorio
 const tBody = $id('tbody')
-relatorioAnoAtual.mes[mesAtualString.toLowerCase()].sort((a,b)=> a.dia - b.dia).forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
+relatorioAnoAtual.mes[mesAtualString.toLowerCase()]
+    .sort((a,b)=> a.dia - b.dia)
+    .forEach((item,i) => tBody.appendChild(tBodyCreate(item,i)))
 //modal elementos
 const h2Title = $id('titleModal')
 const divBodyModal = $id('corpoModal')
@@ -90,22 +70,12 @@ const btnAdd = $id('add')
 const btnSend = $id('send')
 
 btnSend.addEventListener('click', function(){
-    btnSend.classList.add('clicked');
-
-    setTimeout(() => {
-        btnSend.classList.remove('clicked');
-    }, 300);
-    // event.preventDefault()
+    btnAnimation(this)
     btnSend.setAttribute('href', `whatsapp://send?text=${atualiza.mensagemWhats(countMes,relatorioAnoAtual.mes[countMes.toLowerCase()])}`)
-    // this.onclick = window.open(`whatsapp://send?text=${atualiza.mensagemWhats()}`)
 })
 
 btnAdd.addEventListener('click', function() {
-    btnAdd.classList.add('clicked');
-
-    setTimeout(() => {
-        btnAdd.classList.remove('clicked');
-    }, 300);
+    btnAnimation(this)
     divCxDialogo.classList.add('caixa-dialogo-aberta');
     modalTitulo('Adicionar atividade')
     modalCorpo(bodyRelatorio(),'addRelatorio')
@@ -113,18 +83,10 @@ btnAdd.addEventListener('click', function() {
     }
 );
 btnAlvos.addEventListener('click', function() {
-    btnAlvos.classList.add('clicked');
-
-    setTimeout(() => {
-        btnAlvos.classList.remove('clicked');
-    }, 300);
+    btnAnimation(this)
     divCxDialogo.classList.add('caixa-dialogo-aberta');
     modalTitulo('Alvos')
     modalCorpo(bodyAlvo())
     modalFooter([btnCancel(),btnSalvar(addAlvo,'sair-incluirAlvo')])
     }
 );
-
-// btnFecharDialogo.addEventListener('click', function() {
-//     divCxDialogo.classList.remove('caixa-dialogo-aberta');
-// });
