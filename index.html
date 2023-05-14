@@ -8,6 +8,12 @@
     <link rel="icon" type="image/png" sizes="192x192" href="icone.png">
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/f_btns.css">
+    <link rel="stylesheet" href="./css/h_btns.css">
+    <link rel="stylesheet" href="./css/s_dados_relatorio.css">
+    <link rel="stylesheet" href="./css/m_tabela.css">
+    <link rel="stylesheet" href="./css/s_cronometro.css">
+    <link rel="stylesheet" href="./css/modal.css">
     <script src="./js/index.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
@@ -84,6 +90,38 @@
             <tbody id="tbody"></tbody>
         </table>
     </main>
+    <section class="cronometro">
+        <button onclick="this.parentNode.classList.add('ativo')">
+            <ion-icon name="chevron-up-outline" style="font-size: 18px; color: blueviolet;"></ion-icon>
+        </button>
+        <h4>Cronômetro/Calcula Horas</h4>
+        <div class="c-timer">
+            <span id="cron-horas" class="t-horas">00</span>:
+            <span id="cron-min" class="t-min">00</span>
+            <button>
+                <ion-icon name="timer-outline" style="font-size: 18px; color: blueviolet;"></ion-icon>
+            </button>
+        </div>
+        <div class="c-calc">
+            <div class="c-calc-horas">
+                <label for="">Inicio
+                    <input id="i-horas" type="number" style="width: 20px; text-align: end;" placeholder="hh">:
+                    <input id="i-min" type="number" style="width: 20px; text-align: end;" placeholder="mm">
+                </label>
+                <label for="">Fim
+                    <input id="f-horas" type="number" style="width: 20px; text-align: end;" placeholder="hh">:
+                    <input id="f-min" type="number" style="width: 20px; text-align: end;" placeholder="mm">
+                </label>
+            </div>
+            <button>
+                <ion-icon name="calculator-outline" style="font-size: 18px; color: blueviolet;"></ion-icon>
+            </button>
+            <h3 id="resultado-calc">00:00</h3>
+            <button>
+                <ion-icon name="copy-outline" style="font-size: 18px; color: blueviolet;"></ion-icon>
+            </button>
+        </div>
+    </section>
     <footer>
         <button id="alvo" title="Alvos">
             <ion-icon name="rocket"></ion-icon>
