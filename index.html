@@ -91,8 +91,11 @@
         </table>
     </main>
     <section class="cronometro">
-        <button onclick="this.parentNode.classList.add('ativo')">
+        <button id="btn-cron-ativo" class="btn-cron" onclick="abrirCronometro(this)">
             <ion-icon name="chevron-up-outline" style="font-size: 18px; color: blueviolet;"></ion-icon>
+        </button>
+        <button id="btn-cron-desab" class="btn-cron" onclick="fecharCronometro(this)">
+            <ion-icon name="chevron-down-outline" style="font-size: 18px; color: blueviolet;"></ion-icon>
         </button>
         <h4>Cronômetro/Calcula Horas</h4>
         <div class="c-timer">
@@ -143,6 +146,7 @@
         </div>
     </div>
     <script src="./js/relatorio.js"></script>
+    <script src="./js/cronometro.js"></script>
     <script src="./js/estudos.js"></script>
     <script src="./js/alvo.js"></script>
     <script src="./js/elementsDOM.js"></script>

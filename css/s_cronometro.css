@@ -7,10 +7,27 @@
     flex-direction: column;
     background-color: rgba(137, 43, 226, 0.37);
     transition: bottom .2s cubic-bezier(0.22, 0.61, 0.36, 1);
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.25);
 }
 .cronometro.ativo
 {
     bottom: 70px;
+}
+#btn-cron-ativo
+{
+    display: block;
+}
+#btn-cron-ativo.none
+{
+    display: none;
+}
+#btn-cron-desab
+{
+    display: none;
+}
+#btn-cron-desab.hab
+{
+    display: block;
 }
 .cronometro h4
 {
