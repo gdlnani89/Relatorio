@@ -10,7 +10,7 @@ let meses = [ 'Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Ago
 let mesAtualNumero = data.getMonth()
 let mesAtualString = meses[mesAtualNumero]
 let countMes = meses[mesAtualNumero]
-
+let horasMinTemp
 let relatorio = localStorage.getItem('relatorio') ? JSON.parse(localStorage.getItem('relatorio')) : [criaRelatorio(ano)]
 let estudos = localStorage.getItem('estudos') ? JSON.parse(localStorage.getItem('estudos')) : []
 let alvo = localStorage.getItem('alvo') ? JSON.parse(localStorage.getItem('alvo')) : null

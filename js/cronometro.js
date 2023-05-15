@@ -54,6 +54,8 @@ $id('pause-cron').addEventListener('click', function() {
 $id('zerar-cron').addEventListener('click', function() {
     iconPause.style.color = 'white'
     iconStart.style.color = 'white'
+    iconsCron.forEach(i => i.classList.add('db'))
+    iconsCron[0].classList.remove('db')
   clearInterval(intervalId);
   cronometroAtivo = false;
   segundos = 0;
@@ -61,3 +63,21 @@ $id('zerar-cron').addEventListener('click', function() {
   horas = 0;
   $id('cron-tempo').textContent = '00:00:00';
 });
+function calculaIntervalo() {
+    const horasInicio = parseInt($id('i-horas').value) * 60
+    const somaInicio = horasInicio + parseInt($id('i-min').value)
+    
+    const horasFim = parseInt($id('f-horas').value) * 60
+    const somaFim = horasFim + parseInt($id('f-min').value)
+
+    const resultado = minutosParaHoras(somaFim - somaInicio)
+
+    return resultado
+}
+function resultadoElem(){
+    const total = calculaIntervalo()
+    horasMinTemp = total.split(':')
+    console.log(horasMinTemp);
+    const h3ResultadoCalc = $id('resultado-calc')
+    h3ResultadoCalc.innerText = total
+}
