@@ -1,5 +1,5 @@
 //modal corpo relatorio form
-const bodyRelatorio = () =>{
+const bodyRelatorio = (tempo = ['0','00']) =>{
     const ele = []
     {/* <label for="dia">Dia
         <input value='${dia}' type="number" id="dia" style="width: 25px;" name="dias" min="1" max="31" pattern="[1-9]|[12][0-9]|3[01]" >
@@ -27,7 +27,7 @@ const bodyRelatorio = () =>{
     let iHoras = $cria('input')
     iHoras.setAttribute('type', 'number')
     iHoras.setAttribute('id', 'horas')
-    iHoras.setAttribute('value', '0')
+    iHoras.setAttribute('value', tempo[0])
     iHoras.setAttribute('style', 'width: 25px; text-align: end;')
     lHoras.appendChild(iHoras)
     let p = $cria('p')
@@ -36,7 +36,7 @@ const bodyRelatorio = () =>{
     let iMin = $cria('input')
     iMin.setAttribute('type', 'number')
     iMin.setAttribute('id', 'min')
-    iMin.setAttribute('value', '00')
+    iMin.setAttribute('value', tempo[1])
     iMin.setAttribute('style', 'width: 25px; text-align: end;')
     lHoras.appendChild(iMin)
     {/* <label for="videos">Vídeos

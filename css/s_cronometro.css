@@ -55,10 +55,6 @@
     border-radius: 50%;
     margin-left: 10px;
 }
-.btnCron.db
-{
-    opacity: .3;
-}
 .c-calc
 {
     display: flex;
@@ -90,4 +86,8 @@
     padding: 10px;
     margin: 0 10px;
     background-color: var(--fundo1);
+}
+.c-timer button:disabled
+{
+    opacity: .3;
 }

@@ -68,6 +68,10 @@ const inpForm = document.querySelectorAll('.form-adiciona input')
 const btnAlvos = $id('alvo')
 const btnAdd = $id('add')
 const btnSend = $id('send')
+const h3Tempo = $id('resultado-calc')
+const btnAddCalc = $id('add-calc-tempo')
+const btnAddCron = $id('add-cron-relatorio')
+const spCronTempo = $id('cron-tempo')
 
 btnSend.addEventListener('click', function(){
     btnAnimation(this)
@@ -81,7 +85,25 @@ btnAdd.addEventListener('click', function() {
     modalCorpo(bodyRelatorio(),'addRelatorio')
     modalFooter([btnCancel(),btnSalvar(addAtividade,'fechar-incluirAtividade')])
     }
-);
+)
+btnAddCalc.addEventListener('click', function(){
+    btnAnimation(this)
+    divCxDialogo.classList.add('caixa-dialogo-aberta');
+    modalTitulo('Adicionar atividade')
+    let tempo = h3Tempo.innerText.split(':')
+    modalCorpo(bodyRelatorio(tempo),'addRelatorio')
+    modalFooter([btnCancel(),btnSalvar(addAtividade,'fechar-incluirAtividade')])
+    }
+)
+btnAddCron.addEventListener('click', function(){
+    btnAnimation(this)
+    divCxDialogo.classList.add('caixa-dialogo-aberta');
+    modalTitulo('Adicionar atividade')
+    let tempo = spCronTempo.innerText.split(':')
+    modalCorpo(bodyRelatorio(tempo),'addRelatorio')
+    modalFooter([btnCancel(),btnSalvar(addAtividade,'fechar-incluirAtividade')])
+    }
+)
 btnAlvos.addEventListener('click', function() {
     btnAnimation(this)
     divCxDialogo.classList.add('caixa-dialogo-aberta');

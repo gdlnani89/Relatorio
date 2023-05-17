@@ -41,7 +41,7 @@ $id('start-cron').addEventListener('click', function() {
     console.log(hora+':'+min);
     iconStart.style.color = '#80bfff'
     iconPause.style.color = 'white'
-    iconsCron.forEach(i => i.classList.remove('db'))
+    iconsCron.forEach(i => i.removeAttribute('disabled'))
   if (!cronometroAtivo) {
     intervalId = setInterval(atualizarCronometro, 1000);
     cronometroAtivo = true;
@@ -58,8 +58,8 @@ $id('pause-cron').addEventListener('click', function() {
 $id('zerar-cron').addEventListener('click', function() {
     iconPause.style.color = 'white'
     iconStart.style.color = 'white'
-    iconsCron.forEach(i => i.classList.add('db'))
-    iconsCron[0].classList.remove('db')
+    iconsCron.forEach(i => i.setAttribute('disabled', true))
+    iconsCron[0].removeAttribute('disabled')
   clearInterval(intervalId);
   cronometroAtivo = false;
   segundos = 0;
@@ -79,7 +79,7 @@ function calculaIntervalo() {
     return resultado
 }
 function resultadoElem(){
-    const total = calculaIntervalo()
+    const total = isNaN(calculaIntervalo().split(':')[0]) ? '0:00' : calculaIntervalo()
     // horasMinTemp = total.split(':')
     const h3ResultadoCalc = $id('resultado-calc')
     h3ResultadoCalc.innerText = total
