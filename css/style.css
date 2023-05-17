@@ -62,6 +62,8 @@ ion-icon {
 div#estudos
 {
     text-align: center;
+    max-height: 220px;
+    overflow: auto;
 }
 button#estudanteAdd
 {

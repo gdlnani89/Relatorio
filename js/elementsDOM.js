@@ -72,7 +72,20 @@ const h3Tempo = $id('resultado-calc')
 const btnAddCalc = $id('add-calc-tempo')
 const btnAddCron = $id('add-cron-relatorio')
 const spCronTempo = $id('cron-tempo')
+const ipInicioFim = $all('.c-calc-horas input')
 
+ipInicioFim.forEach((item,indice) =>{
+    item.addEventListener('input', function(){
+        console.log(indice);
+       if(item.value.length === 2){
+        if(indice<=2){
+            ipInicioFim[indice+1].focus()
+        }else{
+            resultadoElem()
+        }
+       }
+    })
+})
 btnSend.addEventListener('click', function(){
     btnAnimation(this)
     btnSend.setAttribute('href', `whatsapp://send?text=${atualiza.mensagemWhats(countMes,relatorioAnoAtual.mes[countMes.toLowerCase()])}`)
