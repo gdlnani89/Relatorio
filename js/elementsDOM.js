@@ -76,13 +76,8 @@ const ipInicioFim = $all('.c-calc-horas input')
 
 ipInicioFim.forEach((item,indice) =>{
     item.addEventListener('input', function(){
-        console.log(indice);
        if(item.value.length === 2){
-        if(indice<=2){
-            ipInicioFim[indice+1].focus()
-        }else{
-            resultadoElem()
-        }
+        indice<=2 ? ipInicioFim[indice+1].focus() : resultadoElem()
        }
     })
 })
