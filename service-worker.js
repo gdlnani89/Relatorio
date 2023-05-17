@@ -7,9 +7,16 @@ self.addEventListener('install', event => {
         '/index.html',
         '/css/styles.css',
         '/css/normalize.css',
+        '/css/f_btns.css',
+        '/css/h_btns.css',
+        '/css/m_tabela.css',
+        '/css/modal.css',
+        '/css/s_cronometro.css',
+        '/css/s_dados_relatorio.css',
         '/js/index.js',
         '/js/elementsDOM.js',
-        '/js/relatorioTabela.js'
+        '/js/relatorioTabela.js',
+        '/js/cronometro.js'
         // '/app.js'
       ]);
     }).catch(error =>{

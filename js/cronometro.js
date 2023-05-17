@@ -21,7 +21,7 @@ const iconPause = $(`#pause-cron ion-icon`)
 console.log(iconsCron);
 function atualizarCronometro() {
   segundos++;
-  if (segundos === 59) {
+  if (segundos === 60) {
     segundos = 0;
     minutos++;
   }
@@ -35,6 +35,10 @@ function atualizarCronometro() {
 }
 
 $id('start-cron').addEventListener('click', function() {
+    let tempo = new Date()
+    let hora = tempo.getHours()
+    let min = tempo.getMinutes()
+    console.log(hora+':'+min);
     iconStart.style.color = '#80bfff'
     iconPause.style.color = 'white'
     iconsCron.forEach(i => i.classList.remove('db'))
@@ -76,8 +80,7 @@ function calculaIntervalo() {
 }
 function resultadoElem(){
     const total = calculaIntervalo()
-    horasMinTemp = total.split(':')
-    console.log(horasMinTemp);
+    // horasMinTemp = total.split(':')
     const h3ResultadoCalc = $id('resultado-calc')
     h3ResultadoCalc.innerText = total
 }
